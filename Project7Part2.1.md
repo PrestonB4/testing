@@ -1,4 +1,4 @@
-# FCFS Queue Simulation - README
+# Project 7 Part 2.1 FCFS Queue Simulation - README
 
 ## Overview
 This Python code simulates a **First-Come-First-Served (FCFS)** queuing system, calculating key metrics such as:
