@@ -1,0 +1,46 @@
+# =============================================================================
+# Title       : Project8c
+# Contributors: Preston Brownlee, Nolan DeSchryver, Trevor Betzler
+# Due date    : 4/21/2025
+# Packages    : numpy, matplotlib, scipy.integrate
+# Description : Approximates integral of f(x) = ln(x) over [1, e]
+#     using the midpoint Riemann sum method. Computes the integral. Plots 
+#     function and area under the curve.
+# =============================================================================
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import quad
+
+# Function
+f = lambda x: np.log(x)
+
+# Interval and number of rectangles
+a, b = 1, np.e
+n = 1000  # High granularity for better approximation
+
+# Width subintervals
+dx = (b - a) / n
+
+# Midpoints for Riemann sum
+x_mid = np.linspace(a + dx/2, b - dx/2, n)
+riemann_sum = np.sum(f(x_mid)) * dx
+
+# integral
+exact_integral, _ = quad(f, a, b)
+
+# Plotting function and shaded area under curve
+x_vals = np.linspace(a, b, 1000)
+y_vals = f(x_vals)
+
+plt.plot(x_vals, y_vals, color='red')
+plt.fill_between(x_vals, y_vals, alpha=0.3, color='lightblue')  # Area - light blue
+plt.title('Integral of ln(x) from 1 to e')
+plt.xlabel('x')
+plt.ylabel('ln(x)')
+plt.grid(True)
+plt.show()
+
+# Print result comparison
+print(f"Riemann Sum Approximation (n={n}): {riemann_sum:.6f}")
+print(f"Exact Integral: {exact_integral:.6f}")
